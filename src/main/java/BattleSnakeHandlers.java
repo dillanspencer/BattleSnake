@@ -56,7 +56,7 @@ public class BattleSnakeHandlers {
         int snakeX;
         int snakeY;
         for(int i=0; i<snakes.length; i++){
-            if(snakes[i].get("name").equals("wecsssssnake"){
+            if(snakes[i].get("name").equals("wecsssssnake")){
                 snakeX = snakes[i].get("coords")[0][0];
                 snakeY = snakes[i].get("coords")[0][1];
             }
@@ -70,7 +70,7 @@ public class BattleSnakeHandlers {
         	
     public int snake(int x, int y, Map<String, Object> requestBody) {
 		
-		String state = requestBody.get("board")[x,y].get("state");
+		String state = requestBody.get("board")[x][y].get("state");
 		if (state.equals("body") || state.equals("head"))
 			return -1000;
 		
