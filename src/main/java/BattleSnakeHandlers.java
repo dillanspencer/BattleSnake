@@ -10,8 +10,8 @@ public class BattleSnakeHandlers {
         // Dummy Response
         Map<String, Object> responseObject = new HashMap<String, Object>();
         responseObject.put("name", "wecsssssnake");
-        responseObject.put("color", "#00BFFF");
-        responseObject.put("head_url", "http://www.mapleprimes.com/DocumentFiles/95819/279486/pacman-moving.gif");
+        responseObject.put("color", "#00BFFF00");
+        responseObject.put("head_url", "http://web.uvic.ca/~etcwilde/pacman-moving.gif");
         responseObject.put("taunt", "Omnomnomnom");
         return responseObject;
     }
