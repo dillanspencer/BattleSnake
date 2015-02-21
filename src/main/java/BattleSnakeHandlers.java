@@ -23,6 +23,7 @@ public class BattleSnakeHandlers {
         Map<String, Object> responseObject = new HashMap<String, Object>();
         responseObject.put("move", "down");
         responseObject.put("taunt", "going down!");
+		System.out.println("total score: " + getVal(10, 10));
         return responseObject;
     }
     
@@ -33,7 +34,11 @@ public class BattleSnakeHandlers {
     }
     
     public static int getVal(int x, int y, Map<String, Object> requestBody){
-        return food(x,y, requestBody) + distance(x,y, requestBody) + snake(x,y, requestBody);
+        System.out.println("Food val: " + food(x,y, requestBody));
+		System.out.println("distance val: " + distance(x,y, requestBody));
+		System.out.println("snake?: " + snake(x,y, requestBody));		
+		
+		return food(x,y, requestBody) + distance(x,y, requestBody) + snake(x,y, requestBody);
                 
     }
     
