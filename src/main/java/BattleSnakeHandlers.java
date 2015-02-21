@@ -11,7 +11,7 @@ public class BattleSnakeHandlers {
         Map<String, Object> responseObject = new HashMap<String, Object>();
         responseObject.put("name", "wecsssssnake");
         responseObject.put("color", "#00BFFF");
-        responseObject.put("head_url", "http://www.mapleprimes.com/DocumentFiles/95819/279486/pacman-moving.gif");
+        responseObject.put("head_url", "pacman-moving.gif");
         responseObject.put("taunt", "Omnomnomnom");
         return responseObject;
     }
