@@ -12,8 +12,8 @@ public class BattleSnakeHandlers {
         // Dummy Response
         Map<String, Object> responseObject = new HashMap<String, Object>();
         responseObject.put("name", "wecsssssnake");
-        responseObject.put("color", "#00BFFF");
-        responseObject.put("head_url", "http://www.mapleprimes.com/DocumentFiles/95819/279486/pacman-moving.gif");
+        responseObject.put("color", "#00BFFF00");
+        responseObject.put("head_url", "http://web.uvic.ca/~etcwilde/pacman-moving.gif");
         responseObject.put("taunt", "Omnomnomnom");
         return responseObject;
     }
@@ -33,8 +33,8 @@ public class BattleSnakeHandlers {
     }
     
     public static int getVal(int x, int y, Map<String, Object> requestBody){
-        return food(x,y, requestBody);
-        
+        return food(x,y, requestBody) + distance(x,y, requestBody) + snake(x,y, requestBody);
+                
     }
     
     public static int food(int x, int y, Map<String, Object> requestBody){
@@ -62,12 +62,18 @@ public class BattleSnakeHandlers {
         
         return -1*(distanceX+distanceY);
     }
-        
+        	
+    public int snake(int x, int y, Map<String, Object> requestBody) {
+		
+		String state = requestBody.get("board")[x,y].get("state");
+		if (state.equals("body") || state.equals("head"))
+			return -1000;
+		
+		return 0;
+	}
     
 }
 
 
 
 
-
-}
