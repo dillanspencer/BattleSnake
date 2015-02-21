@@ -29,5 +29,14 @@ public class BattleSnakeHandlers {
         Map<String, Object> responseObject = new HashMap<String, Object>();
         return responseObject;
     }
+	
+	public int snake(int x, int y, Map<String, Object> requestBody) {
+		
+		String state = requestBody.get("board")[x,y].get("state");
+		if (state.equals("body") || state.equals("head"))
+			return -1000;
+		
+		return 0;
+	}
 
 }
