@@ -70,7 +70,7 @@ public class BattleSnakeHandlers {
         	
     public static int snake(int x, int y, ArrayList<ArrayList<HashMap>> board) {
 		
-		String state = requestBody.get("board")[x][y].get("state");
+		String state = board.get(x).get(y).get("state");
 		if (state.equals("body") || state.equals("head"))
 			return -1000;
 		
