@@ -23,7 +23,7 @@ public class BattleSnakeHandlers {
         Map<String, Object> responseObject = new HashMap<String, Object>();
         responseObject.put("move", "down");
         responseObject.put("taunt", "going down!");
-		System.out.println("total score: " + getVal(10, 10));
+		//System.out.println("total score: " + getVal(10, 10, requestBody));
         return responseObject;
     }
     
@@ -33,17 +33,17 @@ public class BattleSnakeHandlers {
         return responseObject;
     }
     
-    public static int getVal(int x, int y, Map<String, Object> requestBody){
-        System.out.println("Food val: " + food(x,y, requestBody));
-		System.out.println("distance val: " + distance(x,y, requestBody));
-		System.out.println("snake?: " + snake(x,y, requestBody));		
+    public static int getVal(int x, int y, ArrayList<ArrayList<HashMap>> board){
+        System.out.println("Food val: " + food(x,y, board));
+		System.out.println("distance val: " + distance(x,y, board));
+		System.out.println("snake?: " + snake(x,y, board));		
 		
-		return food(x,y, requestBody) + distance(x,y, requestBody) + snake(x,y, requestBody);
+		return food(x,y, board) + distance(x,y, board) + snake(x,y, board);
                 
     }
     
-    public static int food(int x, int y, Map<String, Object> requestBody){
-        int[][] board = requestBody.get("board");
+    public static int food(int x, int y, ArrayList<ArrayList<HashMap>> board){
+        Object[][] board = requestBody.get("board");
         if(board[x][y].get("state").equals("food")){
             return 10;
         } else {
@@ -51,7 +51,7 @@ public class BattleSnakeHandlers {
         }     
     }
        
-    public static int distance(int x, int y, Map<String, Object> requestBody){
+    public static int distance(int x, int y, ArrayList<ArrayList<HashMap>> board){
         int[] snakes = requestBody.get("snakes");
         int snakeX;
         int snakeY;
@@ -68,7 +68,7 @@ public class BattleSnakeHandlers {
         return -1*(distanceX+distanceY);
     }
         	
-    public int snake(int x, int y, Map<String, Object> requestBody) {
+    public static int snake(int x, int y, ArrayList<ArrayList<HashMap>> board) {
 		
 		String state = requestBody.get("board")[x][y].get("state");
 		if (state.equals("body") || state.equals("head"))
