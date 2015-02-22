@@ -19,16 +19,16 @@ public class DepthFirstSearch
 
 	public DepthFirstSearch(Map<String, Object> board[][], int x, int y, int depth)
 	{
-		max_depth = depth;
-		marked = new int[board.length][board[0].length];
-		parent = new int[board.length][board[0].length][2];
+		//max_depth = depth;
+		this.weights = new int[board.length][board[0].length];
+		this.parent = new int[board.length][board[0].length][2];
 		for (int i = 0; i < board.length; i++)
 		{
 			for (int j = 0; j < board.length; j++)
 			{
-				weights[i][j] = MIN_VALUE;
-				parent[i][j][0] = -1;
-				parent[i][j][1] = -1;
+				this.weights[i][j] = Integer.MIN_VALUE;
+				this.parent[i][j][0] = -1;
+				this.parent[i][j][1] = -1;
 			}
 		}
 	}
@@ -37,31 +37,31 @@ public class DepthFirstSearch
 	public String dfs(Map<String, Object> board[][], int x, int y)
 	{
 		PriorityQueue nodes = new PriorityQueue();
-		nodes.add(Point(x, y,-1,-1,1));
+		nodes.add(new Point(x, y,-1,-1,1));
 		while (nodes.size() > 0)
 		{
-			Point node = nodes.poll();
+			Point node = (Point)nodes.poll();
 			//Map<String, Object> n_content = board[node.x][node.y];
 			int weight = getVal(node.x,node.y) - node.depth;
 			if (weight > weights[node.x][node.y]){
-				weights[node.x][node.y] = weight;
-				parent[node.x][node.y][0] = node.parx;
-				parent[node.x][node.y][1] = node.pary;
-				nodes.add(node.x+1,node.y,node.x,node.y,node.depth+1);
-				nodes.add(node.x-1,node.y,node.x,node.y,node.depth+1);
-				nodes.add(node.x,node.y+1,node.x,node.y,node.depth+1);
-				nodes.add(node.x,node.y-1,node.x,node.y,node.depth+1);
+				this.weights[node.x][node.y] = weight;
+				this.parent[node.x][node.y][0] = node.parx;
+				this.parent[node.x][node.y][1] = node.pary;
+				nodes.add(new Point(node.x+1,node.y,node.x,node.y,node.depth+1));
+				nodes.add(new Point(node.x-1,node.y,node.x,node.y,node.depth+1));
+				nodes.add(new Point(node.x,node.y+1,node.x,node.y,node.depth+1));
+				nodes.add(new Point(node.x,node.y-1,node.x,node.y,node.depth+1));
 			}
 		}
-		int max_val = MIN_VALUE;
+		int max_val = Integer.MIN_VALUE;
 		int max_x, max_y;
 		for (int i = 0; i < weights.length; i++)
 		{
 			for (int j = 0; j < weights[0].length; j++)
 			{
-				if (weights[i][j] > max)
+				if (this.weights[i][j] > max_val)
 				{
-				       	max_val = weights[i][j];
+				       	max_val = this.weights[i][j];
 					max_x = i;
 					max_y = j;
 				}
@@ -69,12 +69,12 @@ public class DepthFirstSearch
 		}
 
 		int t_max_x;
-		while (parent[max_x][max_y][0] != x
+		while (this.parent[max_x][max_y][0] != x
 				|| parent[max_x][max_y][1] != y)
 		{
 			t_max_x = max_x;
-			max_x = parent[t_max_x][max_y][0];
-			max_y = parent[t_max_x][max_y][1];
+			max_x = this.parent[t_max_x][max_y][0];
+			max_y = this.parent[t_max_x][max_y][1];
 		}
 
 		if (max_x < x) return "Left";
