@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.PriorityQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 public class DepthFirstSearch
 {
@@ -44,7 +45,7 @@ public class DepthFirstSearch
 
 	public String dfs(int x, int y)
 	{
-		PriorityQueue nodes = new PriorityQueue();
+		LinkedBlockingQueue nodes = new LinkedBlockingQueue();
 		nodes.add(new Point(x, y,-1,-1,1));
 		while (nodes.size() > 0)
 		{
