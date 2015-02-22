@@ -57,7 +57,7 @@ public class DepthFirstSearch
 			{
 				continue;
 			}
-			int weight = ValueClass.getVal(node.x, node.y, x, y, (Object)this.board) -this.weights[node.parx][node.pary] - 1;
+			int weight = ValueClass.getVal(node.x, node.y, x, y, (Object)this.board) - node.depth;
 			if (weight > weights[node.x][node.y]){
 				this.weights[node.x][node.y] = weight;
 				this.parent[node.x][node.y][0] = node.parx;
