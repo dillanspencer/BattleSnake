@@ -53,7 +53,7 @@ public class DepthFirstSearch
 			//Map<String, Object> n_content = board[node.x][node.y];
 			// FIXME getVal
 			//int weight = getVal(node.x,node.y) - node.depth;
-			if (node.x < 0 || node.y < 0 || node.x > board.size() || node.y > board.get(0).size())
+			if (node.x < 0 || node.y < 0 || node.x > board.size()-1 || node.y > board.get(0).size()-1)
 			{
 				continue;
 			}
