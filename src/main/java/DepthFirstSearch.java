@@ -5,6 +5,8 @@
  * DFS is fun!
  */
 
+import java.util.ArrayList;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -14,17 +16,23 @@ public class DepthFirstSearch
 	private int [][] weights;
 	//private boolean[][] marked;
 	private int parent[][][];
+	private ArrayList<ArrayList<Map<String, Object>>> board;
 	private int count;
-	private int max_depth;
+	private ArrayList<Map<String, Object>> snakes;
 
-	public DepthFirstSearch(Map<String, Object> board[][], int x, int y, int depth)
+	//public DepthFirstSearch(Map<String, Object> board[][])
+	public DepthFirstSearch(ArrayList<ArrayList<Map<String, Object>>> board, ArrayList<Map<String, Object>> snakes)
 	{
 		//max_depth = depth;
-		this.weights = new int[board.length][board[0].length];
-		this.parent = new int[board.length][board[0].length][2];
-		for (int i = 0; i < board.length; i++)
+		//this.weights = new int[board.length][board[0].length];
+		//this.parent = new int[board.length][board[0].length][2];
+		this.weights = new int[board.size()][board.get(0).size()];
+		this.parent = new int[board.size()][board.get(0).size()][2];
+		this.board = board;
+		this.snakes = snakes;
+		for (int i = 0; i < board.size(); i++)
 		{
-			for (int j = 0; j < board.length; j++)
+			for (int j = 0; j < board.get(0).size(); j++)
 			{
 				this.weights[i][j] = Integer.MIN_VALUE;
 				this.parent[i][j][0] = -1;
@@ -34,14 +42,15 @@ public class DepthFirstSearch
 	}
 
 
-	public String dfs(Map<String, Object> board[][], int x, int y)
+	public String dfs(int x, int y)
 	{
-		/*PriorityQueue nodes = new PriorityQueue();
+		PriorityQueue nodes = new PriorityQueue();
 		nodes.add(new Point(x, y,-1,-1,1));
 		while (nodes.size() > 0)
 		{
 			Point node = (Point)nodes.poll();
 			//Map<String, Object> n_content = board[node.x][node.y];
+			// FIXME getVal
 			int weight = getVal(node.x,node.y) - node.depth;
 			if (weight > weights[node.x][node.y]){
 				this.weights[node.x][node.y] = weight;
@@ -77,13 +86,12 @@ public class DepthFirstSearch
 			max_y = this.parent[t_max_x][max_y][1];
 		}
 
-		if (max_x < x) return "Left";
-		else if (max_x > x) return "Right";
-		else if (max_y > y) return "Down";
-		else if (max_y < y) return "Up"; // yes!
-		else return "You are wrong!";*/
-		
-		return "test";
+		if (max_x < x) return "left";
+		else if (max_x > x) return "right";
+		else if (max_y > y) return "down";
+		else if (max_y < y) return "up"; // yes!
+		else return "You are wrong!";
+
 	}
 
 	private class Point
