@@ -16,19 +16,23 @@ public class DepthFirstSearch
 	private int [][] weights;
 	//private boolean[][] marked;
 	private int parent[][][];
-	private Map<String, Object> board;
+	private ArrayList<ArrayList<Map<String, Object>>> board;
 	private int count;
+	private ArrayList<Map<String, Object>> snakes;
 
 	//public DepthFirstSearch(Map<String, Object> board[][])
-	public DepthFirstSearch(ArrayList<ArrayList<Map<String, Object>>> board)
+	public DepthFirstSearch(ArrayList<ArrayList<Map<String, Object>>> board, ArrayList<Map<String, Object>> snakes)
 	{
 		//max_depth = depth;
-		this.weights = new int[board.length][board[0].length];
-		this.parent = new int[board.length][board[0].length][2];
+		//this.weights = new int[board.length][board[0].length];
+		//this.parent = new int[board.length][board[0].length][2];
+		this.weights = new int[board.size()][board.get(0).size()];
+		this.parent = new int[board.size()][board.get(0).size()][2];
 		this.board = board;
-		for (int i = 0; i < board.length; i++)
+		this.snakes = snakes;
+		for (int i = 0; i < board.size(); i++)
 		{
-			for (int j = 0; j < board.length; j++)
+			for (int j = 0; j < board.get(0).size(); j++)
 			{
 				this.weights[i][j] = Integer.MIN_VALUE;
 				this.parent[i][j][0] = -1;
@@ -82,10 +86,10 @@ public class DepthFirstSearch
 			max_y = this.parent[t_max_x][max_y][1];
 		}
 
-		if (max_x < x) return "Left";
-		else if (max_x > x) return "Right";
-		else if (max_y > y) return "Down";
-		else if (max_y < y) return "Up"; // yes!
+		if (max_x < x) return "left";
+		else if (max_x > x) return "right";
+		else if (max_y > y) return "down";
+		else if (max_y < y) return "up"; // yes!
 		else return "You are wrong!";
 	}
 
