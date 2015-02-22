@@ -36,7 +36,7 @@ public class DepthFirstSearch
 
 	public String dfs(Map<String, Object> board[][], int x, int y)
 	{
-		PriorityQueue nodes = new PriorityQueue();
+		/*PriorityQueue nodes = new PriorityQueue();
 		nodes.add(new Point(x, y,-1,-1,1));
 		while (nodes.size() > 0)
 		{
@@ -81,7 +81,9 @@ public class DepthFirstSearch
 		else if (max_x > x) return "Right";
 		else if (max_y > y) return "Down";
 		else if (max_y < y) return "Up"; // yes!
-		else return "You are wrong!";
+		else return "You are wrong!";*/
+		
+		return "test";
 	}
 
 	private class Point
