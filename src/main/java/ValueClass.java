@@ -29,6 +29,8 @@ public class ValueClass {
     public static int snake(int x, int y, ArrayList<ArrayList<HashMap>> board) {
 
 		String state = (String)board.get(x).get(y).get("state");
+		system.out.println(state);
+
 		if (state.equals("body") || state.equals("head")) { // if there is a snake
 			return -1000;
 			//boolean tail = false;
