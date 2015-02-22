@@ -25,7 +25,8 @@ public class BattleSnakeHandlers {
         responseObject.put("move", "down");
         responseObject.put("taunt", "going down!");
 		
-		System.out.println("total score: " + getVal(10, 10, 2, 2, requestBody.get("board")));
+		//Object snakes = 
+		//System.out.println("total score: " + getVal(10, 10, 2, 2, requestBody.get("board"), snakes));
 		
         return responseObject;
     }
@@ -35,14 +36,15 @@ public class BattleSnakeHandlers {
         Map<String, Object> responseObject = new HashMap<String, Object>();
         return responseObject;
     }
-    
+    /*
 
-    public static int getVal(int x, int y, int snakeX, int snakeY, Object board){
+    public static int getVal(int x, int y, int snakeX, int snakeY, Object board, Object[] snakes){
         System.out.println("Food val: " + food(x,y, (ArrayList<ArrayList<HashMap>>)board));
-		System.out.println("distance val: " + distance(x,y, snakeX, snakeY));
-		System.out.println("snake?: " + snake(x,y, (ArrayList<ArrayList<HashMap>>)board));		
+		//System.out.println("distance val: " + distance(x,y, snakeX, snakeY));
+		System.out.println("snake?: " + snake(x,y, (ArrayList<ArrayList<HashMap>>)board), snakes);		
 		
-		return food(x,y, (ArrayList<ArrayList<HashMap>>)board) + distance(x,y, snakeX, snakeY) + snake(x,y, (ArrayList<ArrayList<HashMap>>)board);
+		//return food(x,y, (ArrayList<ArrayList<HashMap>>)board) + distance(x,y, snakeX, snakeY) + snake(x,y, (ArrayList<ArrayList<HashMap>>)board);
+		return food(x,y, (ArrayList<ArrayList<HashMap>>)board) + snake(x,y, (ArrayList<ArrayList<HashMap>>)board, snakes);
 
                 
     }
@@ -63,16 +65,17 @@ public class BattleSnakeHandlers {
         int distanceY = Math.abs(snakeY-y);
         
         return -1*(distanceX+distanceY);
-    }
-        	
-    public static int snake(int x, int y, ArrayList<ArrayList<HashMap>> board) {
+    }	
+    public static int snake(int x, int y, ArrayList<ArrayList<HashMap>> board, Object[] snakes) {
 		
 		String state = (String)board.get(x).get(y).get("state");
-		if (state.equals("body") || state.equals("head"))
+		if (state.equals("body") || state.equals("head")) { // if there is a snake
 			return -1000;
+			//boolean tail = false;
+		}
 		
 		return 0;
-	}
+	}*/
     
 }
 
