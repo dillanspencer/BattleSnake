@@ -51,7 +51,8 @@ public class DepthFirstSearch
 			Point node = (Point)nodes.poll();
 			//Map<String, Object> n_content = board[node.x][node.y];
 			// FIXME getVal
-			int weight = getVal(node.x,node.y) - node.depth;
+			//int weight = getVal(node.x,node.y) - node.depth;
+			int weight = ValueClass.getVal(node.x, node.y, x, y, (Object)this.board) - node.depth;
 			if (weight > weights[node.x][node.y]){
 				this.weights[node.x][node.y] = weight;
 				this.parent[node.x][node.y][0] = node.parx;
@@ -63,7 +64,8 @@ public class DepthFirstSearch
 			}
 		}
 		int max_val = Integer.MIN_VALUE;
-		int max_x, max_y;
+		int max_x = Integer.MIN_VALUE;
+		int max_y = Integer.MIN_VALUE;
 		for (int i = 0; i < weights.length; i++)
 		{
 			for (int j = 0; j < weights[0].length; j++)
