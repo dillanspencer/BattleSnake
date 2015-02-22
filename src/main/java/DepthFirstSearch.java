@@ -5,6 +5,8 @@
  * DFS is fun!
  */
 
+import java.util.ArrayList;
+
 import java.util.Map;
 import java.util.HashMap;
 import java.util.PriorityQueue;
@@ -14,14 +16,16 @@ public class DepthFirstSearch
 	private int [][] weights;
 	//private boolean[][] marked;
 	private int parent[][][];
+	private Map<String, Object> board;
 	private int count;
-	private int max_depth;
 
-	public DepthFirstSearch(Map<String, Object> board[][], int x, int y, int depth)
+	//public DepthFirstSearch(Map<String, Object> board[][])
+	public DepthFirstSearch(ArrayList<ArrayList<Map<String, Object>>> board)
 	{
 		//max_depth = depth;
 		this.weights = new int[board.length][board[0].length];
 		this.parent = new int[board.length][board[0].length][2];
+		this.board = board;
 		for (int i = 0; i < board.length; i++)
 		{
 			for (int j = 0; j < board.length; j++)
@@ -34,7 +38,7 @@ public class DepthFirstSearch
 	}
 
 
-	public String dfs(Map<String, Object> board[][], int x, int y)
+	public String dfs(int x, int y)
 	{
 		PriorityQueue nodes = new PriorityQueue();
 		nodes.add(new Point(x, y,-1,-1,1));
@@ -42,6 +46,7 @@ public class DepthFirstSearch
 		{
 			Point node = (Point)nodes.poll();
 			//Map<String, Object> n_content = board[node.x][node.y];
+			// FIXME getVal
 			int weight = getVal(node.x,node.y) - node.depth;
 			if (weight > weights[node.x][node.y]){
 				this.weights[node.x][node.y] = weight;
