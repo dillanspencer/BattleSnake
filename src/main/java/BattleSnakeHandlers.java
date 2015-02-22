@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.LinkedList;
 import java.awt.Point;
+import java.util.ArrayList;
 
 
 public class BattleSnakeHandlers {
@@ -23,7 +24,9 @@ public class BattleSnakeHandlers {
         Map<String, Object> responseObject = new HashMap<String, Object>();
         responseObject.put("move", "down");
         responseObject.put("taunt", "going down!");
-		//System.out.println("total score: " + getVal(10, 10, requestBody));
+		
+		System.out.println("total score: " + getVal(10, 10, 2, 2, requestBody.get("board")));
+		
         return responseObject;
     }
 
@@ -34,12 +37,12 @@ public class BattleSnakeHandlers {
     }
     
 
-    public static int getVal(int x, int y, int snakeX, int snakeY, ArrayList<ArrayList<HashMap>> board){
-        System.out.println("Food val: " + food(x,y, board));
+    public static int getVal(int x, int y, int snakeX, int snakeY, Object board){
+        System.out.println("Food val: " + food(x,y, (ArrayList<ArrayList<HashMap>>)board));
 		System.out.println("distance val: " + distance(x,y, snakeX, snakeY));
-		System.out.println("snake?: " + snake(x,y, board));		
+		System.out.println("snake?: " + snake(x,y, (ArrayList<ArrayList<HashMap>>)board));		
 		
-		return food(x,y, board) + distance(x,y, snakeX, snakeY) + snake(x,y, board);
+		return food(x,y, (ArrayList<ArrayList<HashMap>>)board) + distance(x,y, snakeX, snakeY) + snake(x,y, (ArrayList<ArrayList<HashMap>>)board);
 
                 
     }
@@ -64,7 +67,7 @@ public class BattleSnakeHandlers {
         	
     public static int snake(int x, int y, ArrayList<ArrayList<HashMap>> board) {
 		
-		String state = board.get(x).get(y).get("state");
+		String state = (String)board.get(x).get(y).get("state");
 		if (state.equals("body") || state.equals("head"))
 			return -1000;
 		
