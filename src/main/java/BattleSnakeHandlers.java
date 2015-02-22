@@ -33,35 +33,29 @@ public class BattleSnakeHandlers {
         return responseObject;
     }
     
-    public static int getVal(int x, int y, ArrayList<ArrayList<HashMap>> board){
+
+    public static int getVal(int x, int y, int snakeX, int snakeY, ArrayList<ArrayList<HashMap>> board){
         System.out.println("Food val: " + food(x,y, board));
-		System.out.println("distance val: " + distance(x,y, board));
+		System.out.println("distance val: " + distance(x,y, snakeX, snakeY));
 		System.out.println("snake?: " + snake(x,y, board));		
 		
-		return food(x,y, board) + distance(x,y, board) + snake(x,y, board);
+		return food(x,y, board) + distance(x,y, snakeX, snakeY) + snake(x,y, board);
+
                 
     }
     
     public static int food(int x, int y, ArrayList<ArrayList<HashMap>> board){
-        Object[][] board = requestBody.get("board");
-        if(board[x][y].get("state").equals("food")){
+
+        if(board.get(x).get(y).get("state").equals("food")){
+
             return 10;
         } else {
             return 0;
         }     
     }
-       
-    public static int distance(int x, int y, ArrayList<ArrayList<HashMap>> board){
-        int[] snakes = requestBody.get("snakes");
-        int snakeX;
-        int snakeY;
-        for(int i=0; i<snakes.length; i++){
-            if(snakes[i].get("name").equals("wecsssssnake")){
-                snakeX = snakes[i].get("coords")[0][0];
-                snakeY = snakes[i].get("coords")[0][1];
-            }
-        }
-        
+
+    public static int distance(int x, int y, int snakeX, int snakeY){
+
         int distanceX = Math.abs(snakeX-x);
         int distanceY = Math.abs(snakeY-y);
         
